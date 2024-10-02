@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Search - Amazon & Flipkart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        iframe {
+            width: 49%;
+            height: 600px;
+            border: 1px solid #ccc;
+        }
+        .frame-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Search: Amazon & Flipkart</h1>
+        
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search for products..." style="width: 400px; padding: 10px;">
+            <button onclick="searchProduct()" style="padding: 10px;">Search</button>
+        </div>
+
+        <!-- Two Frames for Amazon and Flipkart Results -->
+        <div class="frame-container">
+            <iframe id="amazonFrame" src="https://www.amazon.in" title="Amazon Results"></iframe>
+            <iframe id="flipkartFrame" src="https://www.flipkart.com" title="Flipkart Results"></iframe>
+        </div>
+    </div>
+
+    <script>
+        function searchProduct() {
+            const query = document.getElementById('searchInput').value;
+            if (query) {
+                // Search on Amazon
+                const amazonSearchUrl = `https://www.amazon.in/s?k=${encodeURIComponent(query)}`;
+                document.getElementById('amazonFrame').src = amazonSearchUrl;
+
+                // Search on Flipkart
+                const flipkartSearchUrl = `https://www.flipkart.com/search?q=${encodeURIComponent(query)}`;
+                document.getElementById('flipkartFrame').src = flipkartSearchUrl;
+            } else {
+                alert('Please enter a search term.');
+            }
+        }
+    </script>
+</body>
+</html>
